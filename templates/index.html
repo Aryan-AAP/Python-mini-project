@@ -1,17 +1,15 @@
 
-{% extends "base.html" %}
-
-{% block title %}Aryan{% endblock title %}
- 
-{% block body %}
 
 
-welcome {{request.user}}
 
 
+<!-- index.html -->
+<h1>Welcome, {{ request.user.username }}!</h1>
 <a href="/logout">Logout</a>
 
-
-
-
-{% endblock body %}
+<h2>Choose a Subject to Start Quiz:</h2>
+<ul>
+    {% for subject in subjects %}
+        <li><a href="{% url 'start_quiz' subject=subject.subject %}">{{ subject.subject }}</a></li>
+    {% endfor %}
+</ul>

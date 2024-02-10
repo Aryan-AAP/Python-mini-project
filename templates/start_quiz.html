@@ -1,0 +1,35 @@
+<!-- start_quiz.html -->
+<h1>Quiz for {{ subject }}</h1>
+
+<form method="post" action="{% url 'submit_quiz' %}">
+    {% csrf_token %}
+    
+    {% for question in random_questions %}
+        <fieldset>
+            <legend>{{ question.question_text }}</legend>
+
+            <label>
+                <input type="radio" name="question_{{ question.id }}" value="{{ question.option1 }}">
+                {{ question.option1 }}
+            </label><br>
+
+            <label>
+                <input type="radio" name="question_{{ question.id }}" value="{{ question.option2 }}">
+                {{ question.option2 }}
+            </label><br>
+
+            <label>
+                <input type="radio" name="question_{{ question.id }}" value="{{ question.option3 }}">
+                {{ question.option3 }}
+            </label><br>
+
+            <label>
+                <input type="radio" name="question_{{ question.id }}" value="{{ question.option4 }}">
+                {{ question.option4 }}
+            </label><br>
+        
+        </fieldset>
+    {% endfor %}
+
+    <button type="submit">Submit Quiz</button>
+</form>

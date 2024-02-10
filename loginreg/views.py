@@ -7,15 +7,43 @@ import requests
 from django.http import HttpResponse
 from django.urls import reverse
 from .forms import QuizItemForm
+from .models import QuizItem
 
 
 
+# views.py
+from django.shortcuts import render
+from .models import QuizItem
+import random
 
 def index(request):
-    print(request.user)
     if request.user.is_anonymous:
         return redirect("/login") 
-    return render(request, 'index.html')
+
+    # Fetch unique subjects from the database
+    subjects = QuizItem.objects.values('subject').distinct()
+
+    return render(request, 'index.html', {'subjects': subjects})
+
+from django.shortcuts import render
+from .models import QuizItem
+
+def start_quiz(request, subject):
+    # Retrieve questions for the given subject
+    questions = QuizItem.objects.filter(subject=subject)
+
+    # Fetch random 10 questions for the selected subject
+    random_questions = QuizItem.objects.filter(subject=subject).order_by('?')[:10]
+
+    # Pass the questions and options as context to the template
+    context = {
+        'subject': subject,
+        'all_questions': questions,
+        'random_questions': random_questions,
+    }
+
+    return render(request, 'start_quiz.html', context)
+
 
 def loginUser(request):
     if request.method=="POST":
@@ -69,3 +97,11 @@ def add_question(request):
         form = QuizItemForm()
 
     return render(request, 'quiz/add_question.html', {'form': form})
+
+
+# views.py
+from django.shortcuts import render
+
+def submit_quiz(request):
+    # Your view logic here
+    pass
