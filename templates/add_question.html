@@ -1,0 +1,15 @@
+<!-- quiz/templates/quiz/add_question.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Question</title>
+</head>
+<body>
+    <h2>Add a New Question</h2>
+    <form method="post" action="{% url 'add_question' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
