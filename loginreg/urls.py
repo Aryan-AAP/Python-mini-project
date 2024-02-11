@@ -8,6 +8,7 @@ from . import views
 
 urlpatterns = [ 
     path('',views.index, name="home"),
+   
         path('start_quiz/<str:subject>/', views.start_quiz, name='start_quiz'),
     path('submit_quiz/', views.submit_quiz, name='submit_quiz'),
 

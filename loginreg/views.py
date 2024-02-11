@@ -160,3 +160,5 @@ def submit_quiz(request):
         # If someone tries to access the submit_quiz page directly without submitting the form
         messages.warning(request, 'Invalid Access!')
         return redirect('home')  # Redirect to the home page or any other page
+
+
