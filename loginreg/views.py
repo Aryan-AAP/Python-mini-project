@@ -96,12 +96,67 @@ def add_question(request):
     else:
         form = QuizItemForm()
 
-    return render(request, 'quiz/add_question.html', {'form': form})
+    return render(request, 'add_question.html', {'form': form})
 
 
 # views.py
 from django.shortcuts import render
 
+# views.py
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import QuizItem
+
+       
+from django.shortcuts import render
+
+# def quiz_results(request):
+#     # Your logic to calculate quiz results and pass data to the template
+#     total_questions = 10  # Replace with the actual total number of questions
+#     correct_answers = 7  # Replace with the actual number of correct answers
+#     incorrect_answers = total_questions - correct_answers
+#     percentage = (correct_answers / total_questions) * 100 if total_questions > 0 else 0
+
+#     context = {
+#         'total_questions': total_questions,
+#         'correct_answers': correct_answers,
+#         'incorrect_answers': incorrect_answers,
+#         'percentage': percentage,
+#     }
+
+#     return render(request, 'quiz_results.html', context)
+
+# views.py
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import QuizItem
+
 def submit_quiz(request):
-    # Your view logic here
-    pass
+    if request.method == 'POST':
+        # Retrieve user-submitted answers from the form
+        user_answers = {}
+        for key, value in request.POST.items():
+            if key.startswith('question_'):
+                question_id = int(key.split('_')[1])
+                user_answers[question_id] = value
+
+        # Retrieve correct answers from the database
+        correct_answers = {}
+        questions = QuizItem.objects.all()
+        for question in questions:
+            correct_answers[question.id] = question.correct_option
+
+        # Compare user answers with correct answers and calculate the score
+        score = 0
+        for question_id, user_answer in user_answers.items():
+            correct_answer = correct_answers.get(question_id, None)
+            if correct_answer and user_answer == correct_answer:
+                score += 1
+
+        # Pass the score to the template
+        return render(request, 'quiz_results.html', {'score': score})
+
+    else:
+        # If someone tries to access the submit_quiz page directly without submitting the form
+        messages.warning(request, 'Invalid Access!')
+        return redirect('home')  # Redirect to the home page or any other page
