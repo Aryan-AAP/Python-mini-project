@@ -2,12 +2,10 @@
 <!-- quiz/templates/quiz/add_question.html -->
 
 {% block content %}
-    <h2>Add a New Question</h2>
-    <form method="post" action="{% url 'add_question' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-
+<h2>Add a New Question</h2>
+<form method="post" action="{% url 'add_question' %}">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Submit</button>
+</form>
 
 {% endblock content %}

@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
 
- 
-
-
 {% block content %}
-    <h1>Congratulations on completing the quiz!</h1>
+<div class="container h-[87vh] mx-auto p-6 bg-gradient-to-r from-orange-500 to-pink-500 text-white ">
 
-    <p>Your Quiz Score: {{ score }} out of 10</p>
-
-    <!-- You can add more details or customize the congratulatory message as needed -->
-<button><a href="/logout">LogOut</a></button>
-    <p>Thank you for participating!</p>
-</body>
-</html>
-
+    <div class="container mx-auto mt-8">
+        <div class="bg-white p-8 rounded-lg shadow-md max-w-md mx-auto">
+            <h1 class="text-4xl font-bold mb-6 text-center text-gray-800">Congratulations on completing the quiz!</h1>
+            
+            <p class="text-lg text-center text-gray-700 mb-6">Your Quiz Score: <span class="text-blue-500 font-bold">{{ score }}/10</span></p>
+            
+            <!-- Improved Button Styling -->
+            <button class="block w-full bg-blue-500 text-white py-3 px-6 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue transition duration-300">
+                <a href="/logout" class="block w-full h-full text-center">Log Out</a>
+            </button>
+            
+            <p class="mt-6 text-center text-gray-700">Thank you for participating!</p>
+        </div>
+    </div>
+    </div>
 {% endblock content %}
