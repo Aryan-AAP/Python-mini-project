@@ -2,8 +2,10 @@
 
 
 {% extends 'base.html' %}
-{% block body %}
 
+
+
+{% block content %}
 
 <!-- index.html -->
 <h1>Welcome, {{ request.user.username }}!</h1>
@@ -15,4 +17,8 @@
         <li><a href="{% url 'start_quiz' subject=subject.subject %}">{{ subject.subject }}</a></li>
     {% endfor %}
 </ul>
-{% endblock body %}
+
+
+
+
+{% endblock content %}

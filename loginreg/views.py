@@ -18,6 +18,7 @@ import random
 
 def index(request):
     if request.user.is_anonymous:
+        print("loll")
         return redirect("/login") 
 
     # Fetch unique subjects from the database

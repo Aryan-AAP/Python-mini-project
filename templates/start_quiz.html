@@ -1,4 +1,7 @@
 <!-- start_quiz.html -->
+{% extends "base.html" %}
+
+{% block content %}
 <h1>Quiz for {{ subject }}</h1>
 
 <form method="post" action="{% url 'submit_quiz' %}">
@@ -33,3 +36,5 @@
 
     <button type="submit">Submit Quiz</button>
 </form>
+
+{% endblock content %}

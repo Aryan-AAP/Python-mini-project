@@ -25,12 +25,13 @@ SECRET_KEY = '+w2t1e^5j(dc$6hp$z8q%j&u@()wo327xxiq@bd%z7*v27_hx%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['codewithharry.com', 'programmingwithharry.com', '127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    #  'compressor',  # new
 
     'loginreg.apps.HomeConfig',
     'django.contrib.admin',
@@ -55,6 +56,7 @@ ROOT_URLCONF = 'userproject.urls'
 
 TEMPLATES = [
     {
+        # 'DIRS': [BASE_DIR / 'templates'],
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
@@ -124,3 +126,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+
+# COMPRESS_ROOT = BASE_DIR / 'static'
+
+# COMPRESS_ENABLED = True
+
+# STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
