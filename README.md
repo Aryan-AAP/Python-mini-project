@@ -1,1 +1,1 @@
-its an python based quiz gate app 
+its an python based quiz app 
