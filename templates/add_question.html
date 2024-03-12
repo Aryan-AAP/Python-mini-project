@@ -1,11 +1,18 @@
-{% extends "base.html" %}
 <!-- quiz/templates/quiz/add_question.html -->
+{% extends "base.html" %}
 
 {% block content %}
-<h2>Add a New Question</h2>
-<form method="post" action="{% url 'add_question' %}">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Submit</button>
-</form>
+  <h2>Add a New Question</h2>
+  <form method="post" action="{% url 'add_question' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
 
+  <h2>Bulk Import Questions</h2>
+  <form method="post" action="{% url 'add_question' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ bulk_import_form.as_p }}
+    <button type="submit">Import Questions</button>
+  </form>
 {% endblock content %}
