@@ -13,16 +13,19 @@
   <div class="container mx-auto my-8">
     <h2 class="text-3xl font-semibold mb-8 text-center">Choose a Subject to Start Quiz:</h2>
 
-    <div class="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
       {% for subject in subjects %}
-        <div class="relative overflow-hidden bg-white rounded-lg shadow-md transform hover:scale-105 transition-transform">
+        <div class="bg-white rounded-lg shadow-md">
           <a href="{% url 'start_quiz' subject=subject.subject %}" class="block p-6">
-            <div class="flex items-center">
-              <i class="fas fa-book text-blue-500 text-3xl mr-2"></i>
-              <div class="text-blue-500">{{ subject.subject }}</div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <i class="fas fa-book text-blue-500 text-3xl mr-2"></i>
+                <div class="text-blue-500">{{ subject.subject }}</div>
+              </div>
+              <i class="fas fa-chevron-right text-gray-400"></i>
             </div>
           </a>
-          <div class="hidden absolute top-0 right-full p-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-l-lg subject-info">
+          <div class="p-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-b-lg">
             <!-- Additional information about the subject can go here -->
             <!-- You can customize this part based on your requirements -->
           </div>

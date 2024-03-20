@@ -24,8 +24,17 @@ from django.shortcuts import render
 from .models import QuizItem
 from django.contrib.auth.decorators import login_required
 
-@login_required
+# @login_requiredfrom django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+
 def index(request):
+    if not request.user.is_authenticated:
+        # return redirect(reverse('login')) 
+        return render(request, "login.html")
+        # If user is not authenticated, redirect them to the login page
+        #  # Assuming the login URL name is 'login'
+
     # Fetch unique subjects from the database
     subjects = QuizItem.objects.values("subject").distinct()
 
@@ -34,8 +43,6 @@ def index(request):
 
     return render(request, "index.html", {"subjects": subjects, "user_score": user_score})
 
-from django.shortcuts import render
-from .models import QuizItem
 
 
 def start_quiz(request, subject):
@@ -74,6 +81,31 @@ def loginUser(request):
             return render(request, "login.html")
 
     return render(request, "login.html")
+
+
+# from django.shortcuts import render, redirect
+# from django.contrib.auth import logout, authenticate, login
+# from django.contrib.auth.models import User
+
+# def loginUser(request):
+#     if request.method == "POST":
+#         username = request.POST.get("username")
+#         password = request.POST.get("password")
+#         print(username, password)
+
+#         # check if user has entered correct credentials
+#         user = authenticate(username=username, password=password)
+
+#         if user is not None:
+#             # A backend authenticated the credentials
+#             login(request, user)
+#             return redirect("/")  # Redirect to the homepage after successful login
+
+#         else:
+#             # No backend authenticated the credentials
+#             return render(request, "login.html")
+
+#     return render(request, "login.html")
 
 
 def logoutUser(request):
