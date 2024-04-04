@@ -3,7 +3,10 @@
 {% block content %}
     <div class="quiz-container">
         <h1 class="text-4xl md:w-6/12  font-bold mb-6">Quiz for {{ subject }}</h1>
-
+        <div id="timer" class="text-lg font-semibold text-gray-800 bg-gray-100 rounded-lg p-4 shadow-md mb-4">
+            <span id="minutes" class="text-blue-500"></span>m <span id="seconds" class="text-blue-500"></span>s
+        </div>
+        
         <form method="post" action="{% url 'submit_quiz' %}" class="mb-8">
             {% csrf_token %}
 
@@ -36,4 +39,35 @@
             <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue mt-4">Submit Quiz</button>
         </form>
     </div>
+
+
+
+    <script>
+        // Timer code
+        var secondsLeft = 600; // Change this to set the initial timer value in seconds
+
+        function countdown() {
+            var timerDisplay = document.getElementById("timer");
+
+            var minutes = Math.floor(secondsLeft / 60);
+            var seconds = secondsLeft % 60;
+
+            // Display the timer in minutes and seconds format
+            timerDisplay.innerHTML = "Time Remaining: " + minutes + "m " + seconds + "s";
+
+            // Decrement the timer
+            secondsLeft--;
+
+            // Check if the timer has reached 0
+            if (secondsLeft < 0) {
+                // Submit the quiz when the timer runs out
+                document.getElementById("quiz-form").submit();
+            }
+        }
+
+        // Start the timer countdown
+        var timerInterval = setInterval(countdown, 1000);
+    </script>
+
+
 {% endblock content %}

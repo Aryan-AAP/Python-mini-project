@@ -1,17 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Add a New Question</h2>
-  <form method="post" action="{% url 'add_question' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-  </form>
+<div class="max-w-lg mx-auto mt-8">
+    <h2 class="text-2xl font-bold mb-4">Add a New Question</h2>
+    <form method="post" action="{% url 'add_question' %}" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-8">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="question" class="block text-gray-700  font-bold mb-2">Question</label>
+            {{ form.question_text }}
+        </div>
+        <div class="mb-4">
+            <label for="option1" class="block text-gray-700 font-bold mb-2">Option 1</label>
+            {{ form.option1 }}
+        </div>
+        <div class="mb-4">
+            <label for="option2" class="block text-gray-700 font-bold mb-2">Option 2</label>
+            {{ form.option2 }}
+        </div>
+        <div class="mb-4">
+            <label for="option3" class="block text-gray-700 font-bold mb-2">Option 3</label>
+            {{ form.option3 }}
+        </div>
+        <div class="mb-4">
+            <label for="option4" class="block text-gray-700 font-bold mb-2">Option 4</label>
+            {{ form.option4 }}
+        </div>
+        <div class="mb-4">
+            <label for="correct_option" class="block text-gray-700 font-bold mb-2">Correct Option</label>
+            {{ form.correct_option }}
+        </div>
+        <div class="mb-4">
+            <label for="subject" class="block text-gray-700 font-bold mb-2">Subject</label>
+            {{ form.subject }}
+        </div>
 
-  <h2>Bulk Import Questions</h2>
-  <form method="post" action="{% url 'add_question' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ bulk_import_form.as_p }}
-    <button type="submit">Import Questions</button>
-  </form>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full mt-4">Submit</button>
+    </form>
+
+    <h2 class="text-2xl font-bold mb-4">Bulk Import Questions</h2>
+    <form method="post" action="{% url 'add_question' %}" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8">
+        {% csrf_token %}
+        {{ bulk_import_form.as_p }}
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full mt-4">Import Questions</button>
+    </form>
+</div>
 {% endblock content %}
