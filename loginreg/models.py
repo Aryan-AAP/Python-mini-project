@@ -10,3 +10,9 @@ class QuizItem(models.Model):
     option4 = models.CharField(max_length=255)
     correct_option = models.CharField(max_length=255)
     subject = models.CharField(max_length=50, default='General')  # Add a default value
+ 
+ 
+# models.py
+# from django.db import models
+# from django.contrib.auth.models import User
+

@@ -3,10 +3,13 @@
 {% block content %}
     <div class="quiz-container">
         <h1 class="text-4xl md:w-6/12  font-bold mb-6">Quiz for {{ subject }}</h1>
+        {% if is_regular_user %}
+
         <div id="timer" class="text-lg font-semibold text-gray-800 bg-gray-100 rounded-lg p-4 shadow-md mb-4">
             <span id="minutes" class="text-blue-500"></span>m <span id="seconds" class="text-blue-500"></span>s
         </div>
-        
+        {% endif %}
+
         <form method="post" action="{% url 'submit_quiz' %}" class="mb-8">
             {% csrf_token %}
 

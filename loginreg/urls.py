@@ -20,6 +20,7 @@ urlpatterns = [
     path("contact", views.contact, name="contact"),
     path("add_question/", views.add_question, name="add_question"),
     path("submit_quiz/", views.submit_quiz, name="submit_quiz"),
+
 ]
 
 

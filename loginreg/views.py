@@ -242,3 +242,7 @@ def Random_Question_start_quiz(request, subject):
 
     return render(request, "start_quiz.html", context)
 
+
+
+
+
